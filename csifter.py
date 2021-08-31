@@ -22,6 +22,7 @@ import argparse
 import subprocess
 from colorama import Fore, Style
 
+
 '''
 ‣ Run GCC to trigger its 
   source checks
