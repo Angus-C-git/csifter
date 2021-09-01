@@ -1,6 +1,7 @@
 # csifter
 
-A poormans static analysis tool for C source.
+A poormans static analysis tool for C source code auditing.
 
 
-![csifter_demo](https://user-images.githubusercontent.com/44337835/131539541-5d39b192-7188-4fe7-8251-5196e3424f38.png)
+![csiferV1](https://user-images.githubusercontent.com/44337835/131665093-0eec24f4-4ea0-40d8-a202-0882087c25c5.png)
+

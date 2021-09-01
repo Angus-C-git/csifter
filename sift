@@ -8,7 +8,7 @@ from colorama import Fore, Style
 
 import logging
 from rich.logging import RichHandler
-
+from rich import print
 from csifter.sifter import sift
 
 '''
@@ -31,18 +31,12 @@ from csifter.sifter import sift
 def main(args):
 	""" start sift """
 	for file in args.files:
-		print(f'''
-[>->] Sifting sauce for {Fore.LIGHTGREEN_EX} {file} {Style.RESET_ALL}
-		''')
-		
+		print(f'[bold][>->][/bold] Sifting sauce for [b green] {file}\n')
 		sift(file)
 		
 
-
-
-
 def print_banner():
-    print(Fore.LIGHTRED_EX + '''
+    print('''[bold red]
   ____ ____ ___ _____ _____ _____ ____      
  / ___/ ___|_ _|  ___|_   _| ____|  _ \     
 | |   \___ \| || |_    | | |  _| | |_) |    
@@ -50,8 +44,8 @@ def print_banner():
  \____|____/___|_|     |_| |_____|_| \_\    
 
  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                          
-    ''')
-    print(Style.RESET_ALL)
+    [/bold red]''')
+
 
 if __name__ == "__main__":
 

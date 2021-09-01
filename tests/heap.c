@@ -3,9 +3,9 @@
 int main(int argc, char const *argv[])
 {
     /* code */
-    int *a = malloc(10);     // 0xa04010
-    int *b = malloc(10);     // 0xa04030
-    int *c = malloc(10);     // 0xa04050
+    int *a = malloc(10);     
+    int *b = malloc(10);    
+    int *c = malloc(10);
 
     free(&a);
     free(&b); 
