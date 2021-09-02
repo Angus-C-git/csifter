@@ -38,15 +38,14 @@ main(int argc, char const *argv[])
     
     /* printf family */
     printf(argv[1]);
-    fprintf(stdout, 
-            argv[1]
-        );
+    fprintf(stdout, argv[1]);
     sprintf(tmp, argv[1]);
+    vprintf(argv[1], NULL);
     snprintf(tmp, 0x100, argv[1]);
-    vsnprintf(tmp, 0x100, argv[1], NULL);
     vsprintf(tmp, argv[1], NULL);
     vfprintf(stdout, argv[1], NULL);
-    vprintf(argv[1], NULL);
+    vsnprintf(tmp, 0x100, argv[1], NULL);
+    
     
     /* logging */
     dprintf(LOG_ERR, argv[1]);
@@ -57,6 +56,78 @@ main(int argc, char const *argv[])
     fscanf(stdin, argv[1]);
     vscanf(argv[1], NULL);
     vsscanf(tmp, argv[1], NULL);
+    
+    //////////////////////////////////////
+
+    /* ALTERED FORMATTING */
+    printf(
+            argv[1]
+        );
+    fprintf(
+            stdout, 
+            argv[1]
+        );
+    sprintf(
+            tmp, 
+            argv[1]
+        );
+    vprintf(
+            argv[1], 
+            NULL
+        );
+    snprintf(
+            tmp, 
+            0x100, 
+            argv[1]
+        );
+    vsprintf(
+            tmp, 
+            argv[1], 
+            NULL
+        );
+    vfprintf(
+            stdout, 
+            argv[1], 
+            NULL
+        );
+    vsnprintf(
+            tmp, 
+            0x100, 
+            argv[1], 
+            NULL
+        );
+    
+    
+    /* logging */
+    dprintf(
+            LOG_ERR, 
+            argv[1]
+        );
+    syslog(
+            LOG_INFO, 
+            argv[1]
+        );
+    
+    /* scan */
+    scanf(
+            argv[1]
+        );
+    fscanf(
+            stdin, 
+            argv[1]
+        );
+    vscanf(
+            argv[1], 
+            NULL
+        );
+    vsscanf(
+            tmp, 
+            argv[1], 
+            NULL
+        );
+
+
+    /* SAFE USAGE */
     
 
     return 0;
