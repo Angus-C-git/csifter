@@ -53,9 +53,11 @@ main(int argc, char const *argv[])
     syslog(LOG_INFO, argv[1]);
     
     /* scan */
+    scanf(argv[1]);
+    fscanf(stdin, argv[1]);
     vscanf(argv[1], NULL);
     vsscanf(tmp, argv[1], NULL);
-    fscanf(stdin, argv[1]);
-    scanf(argv[1]);
+    
+
     return 0;
 }
