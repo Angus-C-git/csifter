@@ -5,10 +5,12 @@
 
 
 /*
-Database of vulnerable usage of 
-format functions
+Test detection of vulnerable usage 
+of format functions.
 
-GCC detection:
+Should detect format string 
+vulnerabilities for:
+_____________________________
 
     + printf        [X]
     + fprintf       [X]
@@ -128,7 +130,22 @@ main(int argc, char const *argv[])
 
 
     /* SAFE USAGE */
+    printf("%s", argv[1]);
+    fprintf(stdout, "%s", argv[1]);
+    sprintf(tmp, "%s", argv[1]);
+    vprintf("%s", NULL);
+    snprintf(tmp, 0x100, "%s");
+    vsprintf(tmp, "%s", NULL);
+    vfprintf(stdout, "%s", NULL);
+    vsnprintf(tmp, 0x100, "%s", NULL);
     
+    dprintf(LOG_ERR, "%s", argv[1]);
+    syslog(LOG_INFO, "%s", argv[1]);
+
+    scanf("%s", tmp);
+    fscanf(stdin, "%s", tmp);
+    vscanf("%s", NULL);
+    vsscanf(tmp, "%s", NULL);
 
     return 0;
 }

@@ -2,6 +2,10 @@
 
 
 /*
+Test the performance on a huge source file, with a focus
+on execution speed.
+
+
 
     Populate with trash to bloat (10,000 lines)
 __________________________________________________________
