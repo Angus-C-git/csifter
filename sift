@@ -51,15 +51,19 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description=print_banner(), 
-        epilog=">> Should Have gone to stacksavers ?"
+        epilog=">> Should have gone to stacksavers ?"
     )
 
-    parser.add_argument('-files',
+    parser.add_argument('-f', '--files',
                         nargs='+',
                         dest='files',
-                        help = 'file(s) to sift',
+                        help = 'file(s) to audit',
                         )
- 
+  
+    parser.add_argument('-p', '--path',
+                          dest='path',
+						  help='path to audit'
+                        )
 
     args = parser.parse_args()
 
