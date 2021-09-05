@@ -30,5 +30,20 @@ bad_api_usage(void)
     char *str2 = "World";
     char *str3 = "!";
 
-    memset(str, 5, 0);
+    /* UNSAFE */
+
+    memset(str, 0x100, 0);
+    
+    /* ALT SYNTAX */
+    
+    memset(
+            str, 
+            0x100, 
+            0
+        );
+
+
+    /* SAFE */
+    
+    memset(str, 0, 1000);
 }

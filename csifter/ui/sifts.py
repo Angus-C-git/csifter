@@ -36,7 +36,9 @@ def render_block(data):
 					)
 
 	description_txt = Markdown(
-			f""" ## Explanation \n {description} """
+			f""" ## Explanation \n {description} """,
+			inline_code_lexer=SYNTAX,
+			inline_code_theme=THEME,
 		)
 	
 	components = RenderGroup(
