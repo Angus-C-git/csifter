@@ -29,11 +29,14 @@ from csifter.sifter import sift
 '''
 
 def main(args):
-	""" start sift """
+	""" for each file supplied sift """
 	for file in args.files:
-		print(f'[bold][>->][/bold] Sifting sauce for [b green] {file}\n')
-		sift(file)
-		
+		try:
+			print(f'[bold][>->][/bold] Sifting sauce for [b green]{file}\n')
+			sift(file, args.limit)
+		except FileNotFoundError:
+			print(f'[bold][>->][/bold] File [b red]{file} not found[/b red], skipping\n')
+
 
 def print_banner():
 	print('''[bold red]
@@ -67,6 +70,8 @@ if __name__ == "__main__":
 	
 	parser.add_argument('-l', '--limit',
 						dest='limit',
+						default=None,
+						type=int,
 						help='limit the number of results returned at once'
 	) 
 

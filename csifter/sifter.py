@@ -1,7 +1,5 @@
 from rich import print
-# from regex import search as regsearch
-from regex import findall as regfindall
-from regex import finditer as regsearch
+from regex import finditer as regxsearch
 
 from csifter.database.db import signatures
 from csifter.ui.sifts import render_blocks
@@ -13,7 +11,7 @@ from csifter.ui.sifts import render_blocks
 def search_pattern(rule, target):
     """ search src file for rule """
     with open(target, 'r') as src:
-        return regsearch(rule, src.read())
+        return regxsearch(rule, src.read())
 
 
 def resolve_block(signature, result, target):
@@ -36,7 +34,7 @@ def resolve_block(signature, result, target):
         return (signature, line_no, snippet)
 
 
-def sift(target):
+def sift(target, limit=None):
     """ 
     pass over target file searching for
     source code which matches a rule.
@@ -48,6 +46,11 @@ def sift(target):
     for signature in signatures:
         for rule in signature['rules']:
             results = search_pattern(rule, target)
+
+            if (
+                limit is not None 
+                and len(blocks_of_interest) >= limit
+            ): break
 
             for match in results:
                 blocks_of_interest.append(
