@@ -44,15 +44,16 @@ def sift(target):
     target: the path to the current
             candidate for source analysis
     """
-    blocks_of_intrest = []
+    blocks_of_interest = []
     for signature in signatures:
         for rule in signature['rules']:
             results = search_pattern(rule, target)
 
             for match in results:
-                blocks_of_intrest.append(
+                blocks_of_interest.append(
                     resolve_block(signature, match, target)
                 )
 
     # render blocks
-    render_blocks(blocks_of_intrest)
+    render_blocks(blocks_of_interest)
+    return blocks_of_interest
