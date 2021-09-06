@@ -36,7 +36,7 @@ def main(args):
 		
 
 def print_banner():
-    print('''[bold red]
+	print('''[bold red]
   ____ ____ ___ _____ _____ _____ ____      
  / ___/ ___|_ _|  ___|_   _| ____|  _ \     
 | |   \___ \| || |_    | | |  _| | |_) |    
@@ -44,29 +44,34 @@ def print_banner():
  \____|____/___|_|     |_| |_____|_| \_\    
 
  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                          
-    [/bold red]''')
+	[/bold red]''')
 
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(
-        description=print_banner(), 
-        epilog=">> Should have gone to stacksavers ?"
-    )
+	parser = argparse.ArgumentParser(
+		description=print_banner(), 
+		epilog=">> Should have gone to stacksavers ?"
+	)
 
-    parser.add_argument('-f', '--files',
-                        nargs='+',
-                        dest='files',
-                        help = 'file(s) to audit',
-                        )
+	parser.add_argument('-f', '--files',
+						nargs='+',
+						dest='files',
+						help = 'file(s) to audit',
+						)
   
-    parser.add_argument('-p', '--path',
-                          dest='path',
+	parser.add_argument('-p', '--path',
+						  dest='path',
 						  help='path to audit'
-                        )
+						)
+	
+	parser.add_argument('-l', '--limit',
+						dest='limit',
+						help='limit the number of results returned at once'
+	) 
 
-    args = parser.parse_args()
+	args = parser.parse_args()
 
-    if (len(sys.argv) == 1): parser.print_help()
-    else: main(args)
+	if (len(sys.argv) == 1): parser.print_help()
+	else: main(args)
 
