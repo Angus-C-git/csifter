@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+from os import walk, path
 import argparse
 import subprocess
 from colorama import Fore, Style
@@ -12,7 +13,6 @@ from rich import print
 from csifter.sifter import sift
 
 '''
-
   ____ ____ ___ _____ _____ _____ ____  
  / ___/ ___|_ _|  ___|_   _| ____|  _ \ 
 | |   \___ \| || |_    | | |  _| | |_) |
@@ -30,12 +30,25 @@ from csifter.sifter import sift
 
 def main(args):
 	""" for each file supplied sift """
+	if (args.path is not None): 
+		sift_path(args.path, args.limit);
+		return
+
 	for file in args.files:
 		try:
 			print(f'[bold][>->][/bold] Sifting sauce for [b green]{file}\n')
 			sift(file, args.limit)
 		except FileNotFoundError:
 			print(f'[bold][>->][/bold] File [b red]{file} not found[/b red], skipping\n')
+
+
+def sift_path(target_path, limit=None):
+	for root, dir, files in walk(target_path):
+		for file in files:
+			if(file.endswith('.c') or file.endswith('.h')):
+				file_path = path.join(root, file)
+				print(f'\n[bold][>->][/bold] Sifting sauce for [b green]{file_path}\n')
+				sift(file_path, limit)
 
 
 def print_banner():
@@ -72,7 +85,10 @@ if __name__ == "__main__":
 						dest='limit',
 						default=None,
 						type=int,
-						help='limit the number of results returned at once'
+						help='''
+						limit the number of results 
+						returned at once (per file)
+						'''
 	) 
 
 	args = parser.parse_args()
