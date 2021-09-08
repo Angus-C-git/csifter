@@ -1,6 +1,7 @@
 # VSCODE
 
 .vscode
+*.code-workspace
 
 # GCC detection makefile
 tests/modules/Makefile
