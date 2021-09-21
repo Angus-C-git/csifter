@@ -52,10 +52,25 @@ get_port()
 
     printf("Enter desired port\n");   
     // FIXME - whats the right format specifier
-    //         for a uint16_t
+    //         for a uint16_t leaving as int for
+    //         now
     scanf("%d", &port);
+
+    return port;
 }
 
+
+char *
+get_host_address()
+{
+    char *host_ip_address;
+
+    printf("Enter host IP address\n");
+    fgets(host_ip_address, sizeof(host_ip_address), stdin);
+
+    printf("Received remote IP => ");
+    printf(host_ip_address);    
+}
 
 
 /* Entrypoint */
@@ -65,6 +80,7 @@ main(int argc, char const *argv[])
     
     // start main logic
     print_banner();
+    get_port();
     return 0;
 }
 
