@@ -20,9 +20,6 @@ console = Console()
 
 def render_block(data):
 	""" render the potentially vulnerable code block """
-	
-	# TODO -> display the surrounding code?
-
 	snippet = data[2] 
 	title = data[0]['name']
 	description = data[0]['description']
@@ -59,8 +56,11 @@ def render_block(data):
 
 
 
-def render_blocks(blocks):
-
+def render_report(blocks):
+	""" 
+	render the blocks that
+	make up the audit report	
+	"""
 	for block in blocks:
 	  render_block(
 		(

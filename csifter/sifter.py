@@ -2,7 +2,7 @@ from rich import print
 from regex import finditer as regxsearch
 
 from csifter.database.db import signatures
-from csifter.ui.sifts import render_blocks
+from csifter.ui.report import render_report
 
 '''
 ‣ Runs primary logic for analysis
@@ -37,7 +37,8 @@ def resolve_block(signature, result, target):
 def sift(target, limit=None):
     """ 
     pass over target file searching for
-    source code which matches a rule.
+    source code which matches a rule
+    in the database
 
     target: the path to the current
             candidate for source analysis
@@ -54,9 +55,13 @@ def sift(target, limit=None):
 
             for match in results:
                 blocks_of_interest.append(
-                    resolve_block(signature, match, target)
+                    resolve_block(
+                        signature, 
+                        match, 
+                        target
+                    )
                 )
 
     # render blocks
-    render_blocks(blocks_of_interest)
+    render_report(blocks_of_interest)
     return blocks_of_interest

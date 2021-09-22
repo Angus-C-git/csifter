@@ -45,6 +45,13 @@ print_banner(void)
 
 
 
+typedef struct HOST {
+    char *hostname;
+    char *ip;
+} host_t;
+
+
+
 uint16_t
 get_port()
 {
@@ -69,7 +76,22 @@ get_host_address()
     fgets(host_ip_address, sizeof(host_ip_address), stdin);
 
     printf("Received remote IP => ");
-    printf(host_ip_address);    
+    printf(host_ip_address);
+    printf("\n");    
+}
+
+
+void
+configure_host() {
+    char *host_ip_address;
+    uint16_t port;
+
+    host_ip_address = get_host_address();
+    port = get_port();
+
+    // remove stale entries
+    host_t *host = malloc(sizeof(host_t));
+    memset(host->hostname, sizeof(host->hostname), 0);
 }
 
 
@@ -79,8 +101,14 @@ main(int argc, char const *argv[])
 {
     
     // start main logic
-    print_banner();
-    get_port();
+    
     return 0;
 }
 
+/*
+    - DEV NOTES -
+
+    + 07-09-2016 - check if file can
+                    read outside the parent
+                    directory
+*/
