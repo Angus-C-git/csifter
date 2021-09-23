@@ -26,29 +26,32 @@ from csifter.sifter import sift
  ‣ Written badly in python  
  ‣ Do not trust this tool beyond identifying
    the most basic of potential vulnerabilities
+  ‣ Some of the logic here features awful code 
+    reuse and needs refactoring
 '''
 
 def main(args):
 	""" for each file supplied sift """
 	if (args.path is not None): 
-		sift_path(args.path, args.limit);
+		sift_path(args.path, args.limit, args.no_warn);
 		return
 
 	for file in args.files:
 		try:
 			print(f'[bold][>->][/bold] Sifting sauce for [b green]{file}\n')
-			sift(file, args.limit)
+			sift(file, args.limit, args.no_warn)
 		except FileNotFoundError:
 			print(f'[bold][>->][/bold] File [b red]{file} not found[/b red], skipping\n')
 
 
-def sift_path(target_path, limit=None):
+def sift_path(target_path, limit=None, no_warn=False):
+	""" sift all files in a directory """
 	for root, dir, files in walk(target_path):
 		for file in files:
 			if(file.endswith('.c') or file.endswith('.h')):
 				file_path = path.join(root, file)
 				print(f'\n[bold][>->][/bold] Sifting sauce for [b green]{file_path}\n')
-				sift(file_path, limit)
+				sift(file_path, limit, no_warn)
 
 
 def print_banner():
@@ -89,6 +92,11 @@ if __name__ == "__main__":
 						limit the number of results 
 						returned at once (per file)
 						'''
+	) 
+	parser.add_argument('-r', '--risks',
+						dest='no_warn',
+						action='store_true',
+						help='only report risks, exclude warnings'
 	) 
 
 	args = parser.parse_args()

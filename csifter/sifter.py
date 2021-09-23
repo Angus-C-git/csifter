@@ -34,7 +34,7 @@ def resolve_block(signature, result, target):
         return (signature, line_no, snippet)
 
 
-def sift(target, limit=None):
+def sift(target, limit=None, no_warn=False):
     """ 
     pass over target file searching for
     source code which matches a rule
@@ -45,6 +45,8 @@ def sift(target, limit=None):
     """
     blocks_of_interest = []
     for signature in signatures:
+        if signature['type'] == 'warning' and no_warn:
+            break
         for rule in signature['rules']:
             results = search_pattern(rule, target)
 

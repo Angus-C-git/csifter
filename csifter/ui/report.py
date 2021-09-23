@@ -23,6 +23,12 @@ def render_block(data):
 	snippet = data[2] 
 	title = data[0]['name']
 	description = data[0]['description']
+	block_type = data[0]['type']
+	
+
+	# change the panel outline for
+	# warnings and detections
+	block_border = 'yellow' if block_type == 'warning' else 'red1'
 
 	code_snippet = Syntax(
 						snippet, 
@@ -47,7 +53,7 @@ def render_block(data):
 			components,
 			title=f'[b white]{title}',
 			width=60,
-			border_style='red1'
+			border_style=block_border
 		)
 
 	# render
